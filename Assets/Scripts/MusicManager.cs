@@ -14,9 +14,10 @@ public class MusicManager : MonoBehaviour {
 	
 	void Start () {
 		audioSource = GetComponent<AudioSource>();
+		audioSource.volume = PlayerPrefsManager.GetMasterVolume();
 	}
 	
-	void OnLevelWasLoaded(int level){
+	void OnLevelWasLoaded(int level) {
 		AudioClip audioClip = levelMusicChangeArray[level];
 		Debug.Log("Playing clip: " + audioClip);
 		
@@ -27,4 +28,12 @@ public class MusicManager : MonoBehaviour {
 			audioSource.Play();
 		}
 	}	
+	
+	public void SetVolume (float volume) {
+		if (volume >= 0 && volume <= 1) {
+			audioSource.volume = volume;
+		} else {
+			Debug.LogError("Volume value out of range");
+		}
+	}
 }
