@@ -1,4 +1,5 @@
 External/
 Library/
 Temp/
+Assets/Plugins/Editor/ScriptInspector3/
 *.meta

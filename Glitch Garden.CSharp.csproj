@@ -66,13 +66,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Attacker.cs" />
+    <Compile Include="Assets\Scripts\Cactus.cs" />
+    <Compile Include="Assets\Scripts\Defender.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />
+    <Compile Include="Assets\Scripts\Fox.cs" />
+    <Compile Include="Assets\Scripts\Gnome.cs" />
+    <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\Lizard.cs" />
     <Compile Include="Assets\Scripts\MusicManager.cs" />
     <Compile Include="Assets\Scripts\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\OptionsController.cs" />
     <Compile Include="Assets\Scripts\PlayerPrefsManager.cs" />
     <Compile Include="Assets\Scripts\SetStartVolume.cs" />
+    <Compile Include="Assets\Scripts\StarTrophy.cs" />
+    <Compile Include="Assets\Scripts\Stone.cs" />
     <Compile Include="Assets\Scripts\TEST.cs" />
   </ItemGroup>
   <ItemGroup>

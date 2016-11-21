@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class LevelManager : MonoBehaviour {
 	
 	public float autoLoadNextLevelAfter;
+	
+	private int loadedLevel;
 	
 	void Start () {
 		if (autoLoadNextLevelAfter <= 0) {
@@ -13,18 +16,32 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 	
+	void OnEnable() {
+		SceneManager.sceneLoaded += OnLevelFinishedLoading;
+	}
+	
+	void OnDisable() {
+		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+	}
+	
+	
+	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
+		loadedLevel = scene.buildIndex;
+	}
+	
 	public void LoadLevel(string name){
 		Debug.Log ("New Level load: " + name);
-		Application.LoadLevel (name);
+		SceneManager.LoadScene (name);
 	}
 
 	public void QuitRequest(){
 		Debug.Log ("Quit requested");
-		Application.Quit ();
+		//Application.Quit ();
+		SceneManager.UnloadScene(loadedLevel);
 	}
 	
 	public void LoadNextLevel() {
-		Application.LoadLevel(Application.loadedLevel + 1); 
+		SceneManager.LoadScene(loadedLevel + 1); 
 	}
 
 }

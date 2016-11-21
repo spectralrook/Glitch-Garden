@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MusicManager : MonoBehaviour {
@@ -17,7 +18,18 @@ public class MusicManager : MonoBehaviour {
 		audioSource.volume = PlayerPrefsManager.GetMasterVolume();
 	}
 	
-	void OnLevelWasLoaded(int level) {
+	void OnEnable() {
+		SceneManager.sceneLoaded += OnLevelFinishedLoading;
+	}
+	
+	void OnDisable() {
+		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+	}
+	
+	
+	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
+		int level = scene.buildIndex;
+		
 		AudioClip audioClip = levelMusicChangeArray[level];
 		Debug.Log("Playing clip: " + audioClip);
 		
