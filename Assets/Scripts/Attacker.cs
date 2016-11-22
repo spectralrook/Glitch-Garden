@@ -25,7 +25,7 @@ public class Attacker : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D (Collider2D other) {
-		Debug.Log(this.name + " trigger enter with " + other.name);
+		//Debug.Log(this.name + " trigger enter with " + other.name);
 	}
 	
 	public void SetSpeed (float speed) {
@@ -38,7 +38,7 @@ public class Attacker : MonoBehaviour {
 			
 			if (targetHealth) {
 				targetHealth.DealDamage(damage);
-				Debug.Log(this.name + " caused damage: " + damage + " to " + currentTarget.name);
+				//Debug.Log(this.name + " caused damage: " + damage + " to " + currentTarget.name);
 			}
 		} else {
 			animator.SetBool("isAttacking",false);
