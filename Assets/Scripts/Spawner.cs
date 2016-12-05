@@ -3,57 +3,39 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour {
 	
-	public GameObject[] attackers;
+	public GameObject[] attackerPrefabArray;
+	public GameObject[] spawners;
+	private bool isSpawning;
+	private GameObject currentSpawner;
 	
-	//private GameObject parent;
-	
-	// Use this for initialization
-	void Start () {
-		//parent = GameObject.Find("Attackers");
-		
-		//if (!parent) {
-		//	parent = new GameObject("Attackers");
-		//}
+	void Start() {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		foreach (GameObject attacker in attackers) {
-			if (isTimeToSpawn(attacker)) {
-				Spawn(attacker);
-			}
+	void Update() {
+		if (!isSpawning) {
+			isSpawning = true;
+			Random.seed = System.DateTime.Now.Millisecond;
+			int attackerIndex = Random.Range(0, attackerPrefabArray.Length);
+			int spawnerIndex = Random.Range (0, spawners.Length);
+			StartCoroutine (SpawnObject (attackerIndex, spawnerIndex));
 		}
 	}
 	
-	void Spawn (GameObject attacker) {
-		GameObject newAttacker = Instantiate(attacker, this.transform.position, Quaternion.identity) as GameObject;
-		newAttacker.transform.parent = this.transform;			
+	IEnumerator SpawnObject (int attackerIndex, int spawnerIndex) {
+		GameObject attackerGameObject = attackerPrefabArray [attackerIndex];
+		currentSpawner = spawners [spawnerIndex];
+		Attacker attacker = attackerGameObject.GetComponent<Attacker> ();
+		
+		float spawnDelay = attacker.sceenEverySeconds;
+		float randomDelay = Random.Range (spawnDelay - 3, spawnDelay + 3);
+		yield return new WaitForSeconds (spawnDelay);
+		
+		GameObject spawnedObject = Instantiate (attackerGameObject) as GameObject;
+		spawnedObject.transform.parent = currentSpawner.transform;
+		spawnedObject.transform.position = currentSpawner.transform.position;
+		isSpawning = false;
 	}
-	
-	
-	bool isTimeToSpawn (GameObject attackerGameObject) {
-		Attacker attacker = attackerGameObject.GetComponent<Attacker>();
-		
-		float meanSpawnDelay = attacker.sceenEverySeconds;
-		
-		float spawnsPerSecond = 1 / meanSpawnDelay;
-		
-		if (Time.deltaTime > meanSpawnDelay) {
-			Debug.LogWarning("Spawn rate capped by frame rate");
-		}
-		
-		float threshold = spawnsPerSecond * Time.deltaTime / 5;
-		
-		if (Random.value < threshold) {
-			return true;
-		} else {
-			return false;
-		}
-		
-		//return true;
-	}
-	
 }
 
 
