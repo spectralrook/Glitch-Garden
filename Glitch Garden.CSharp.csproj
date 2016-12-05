@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Button.cs" />
     <Compile Include="Assets\Scripts\Cactus.cs" />
     <Compile Include="Assets\Scripts\Defender.cs" />
+    <Compile Include="Assets\Scripts\DefenderSpawner.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />
     <Compile Include="Assets\Scripts\Fox.cs" />
     <Compile Include="Assets\Scripts\Gnome.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\SetStartVolume.cs" />
     <Compile Include="Assets\Scripts\Shooter.cs" />
     <Compile Include="Assets\Scripts\Shredder.cs" />
+    <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\StarTrophy.cs" />
     <Compile Include="Assets\Scripts\Stone.cs" />
     <Compile Include="Assets\Scripts\TEST.cs" />
